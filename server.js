@@ -1,4 +1,11 @@
 const express = require("express")
+var bodyParser = require('body-parser')
+
+var jsonParser = bodyParser.json()
+
+var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+
 const app = express()
 
 var admin = require("firebase-admin");
@@ -19,7 +26,10 @@ app.post("/topic", (req, res) => {
       body: 'test body'
     },
     data: {
-  
+      msgType: 'Notification',
+      content: 'Has sido invitado a jugar a la busqueda',
+      name: 'Nombre de busqueda',
+      player: 'jugador que invitó'
     },
     android: {
       notification: {
@@ -33,7 +43,8 @@ app.post("/topic", (req, res) => {
         }
       }
     },
-    topic: topicName
+    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
+//    topic: topicName
   }
 
   admin.messaging().send(message)
@@ -49,6 +60,134 @@ app.post("/topic", (req, res) => {
   })
 
 
+})
+
+app.post("/notifications/quest_invite", jsonParser, (req, res) => {
+  
+  let senderName = req.body.sender_name
+
+  var message = {
+    notification: {
+      title: senderName + ' te ha invitado a una búsqueda!'
+    },
+    data: {
+      msgType: 'Quest Invitation',
+    },
+    android: {
+      notification: {
+        sound:'defauilt'
+      }
+    },
+    apns: {
+      payload: {
+        aps: {
+          sound: 'default'
+        }
+      }
+    },
+    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
+//    topic: topicName
+  }
+
+  admin.messaging().send(message)
+  .then(response => {
+  console.log('Succesfully sent message: ', response)
+  res.writeHead(200)
+  res.end(response)
+  })
+  .catch(error => {
+    console.log('Error sending message', error)
+    res.writeHead(500)
+    res.end(error)
+  })
+})
+
+app.post("/notifications/quest_accept", jsonParser, (req, res) => {
+  
+  let senderName = req.body.sender_name
+  let questID = req.body.quest_id.toString()
+  let teamID = req.body.team_id.toString()
+
+  var message = {
+    notification: {
+      title: senderName + ' ha aceptado tu invitación para la búsqueda!'
+    },
+    data: {
+      msgType: 'Quest Accept',
+      questID: questID,
+      teamID: teamID,
+    },
+    android: {
+      notification: {
+        sound:'defauilt'
+      }
+    },
+    apns: {
+      payload: {
+        aps: {
+          sound: 'default'
+        }
+      }
+    },
+    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
+//    topic: topicName
+  }
+
+  admin.messaging().send(message)
+  .then(response => {
+  console.log('Succesfully sent message: ', response)
+  res.writeHead(200)
+  res.end(response)
+  })
+  .catch(error => {
+    console.log('Error sending message', error)
+    res.writeHead(500)
+    res.end(error)
+  })
+})
+
+app.post("/notifications/quest_deny", jsonParser, (req, res) => {
+  
+  let senderName = req.body.sender_name
+  let questID = req.body.quest_id.toString()
+  let teamID = req.body.team_id.toString()
+
+  var message = {
+    notification: {
+      title: senderName + ' ha rechazado la invitación para la búsqueda'
+    },
+    data: {
+      msgType: 'Quest Deny',
+      questID: questID,
+      teamID: teamID
+    },
+    android: {
+      notification: {
+        sound:'defauilt'
+      }
+    },
+    apns: {
+      payload: {
+        aps: {
+          sound: 'default'
+        }
+      }
+    },
+    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
+//    topic: topicName
+  }
+
+  admin.messaging().send(message)
+  .then(response => {
+  console.log('Succesfully sent message: ', response)
+  res.writeHead(200)
+  res.end(response)
+  })
+  .catch(error => {
+    console.log('Error sending message', error)
+    res.writeHead(500)
+    res.end(error)
+  })
 })
 
 app.listen(3000, () => {
