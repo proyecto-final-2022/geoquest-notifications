@@ -33,7 +33,7 @@ app.post("/topic", (req, res) => {
     },
     android: {
       notification: {
-        sound:'defauilt'
+        sound:'default'
       }
     },
     apns: {
@@ -75,7 +75,7 @@ app.post("/notifications/quest_invite", jsonParser, (req, res) => {
     },
     android: {
       notification: {
-        sound:'defauilt'
+        sound:'default'
       }
     },
     apns: {
@@ -119,7 +119,7 @@ app.post("/notifications/quest_accept", jsonParser, (req, res) => {
     },
     android: {
       notification: {
-        sound:'defauilt'
+        sound:'default'
       }
     },
     apns: {
@@ -163,7 +163,7 @@ app.post("/notifications/quest_deny", jsonParser, (req, res) => {
     },
     android: {
       notification: {
-        sound:'defauilt'
+        sound:'default'
       }
     },
     apns: {
@@ -189,6 +189,170 @@ app.post("/notifications/quest_deny", jsonParser, (req, res) => {
     res.end(error)
   })
 })
+
+app.post("/notifications/friend_request", jsonParser, (req, res) => {
+  
+  let senderName = req.body.sender_name
+  let senderID = req.body.sender_id.toString()
+
+  var message = {
+    notification: {
+      title: senderName + ' te ha enviado una solicitud de amistad!'
+    },
+    data: {
+      msgType: 'Friend Request',
+      senderID: senderID,
+    },
+    android: {
+      notification: {
+        sound:'default'
+      }
+    },
+    apns: {
+      payload: {
+        aps: {
+          sound: 'default'
+        }
+      }
+    },
+    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
+//    topic: topicName
+  }
+
+  admin.messaging().send(message)
+  .then(response => {
+  console.log('Succesfully sent message: ', response)
+  res.writeHead(200)
+  res.end(response)
+  })
+  .catch(error => {
+    console.log('Error sending message', error)
+    res.writeHead(500)
+    res.end(error)
+  })
+})
+
+app.post("/notifications/friend_accept", jsonParser, (req, res) => {
+  
+  let senderName = req.body.sender_name
+
+  var message = {
+    notification: {
+      title: senderName + ' ha aceptado tu solicitud de amistad!'
+    },
+    data: {
+      msgType: 'Friend Accept'
+    },
+    android: {
+      notification: {
+        sound:'default'
+      }
+    },
+    apns: {
+      payload: {
+        aps: {
+          sound: 'default'
+        }
+      }
+    },
+    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
+//    topic: topicName
+  }
+
+  admin.messaging().send(message)
+  .then(response => {
+  console.log('Succesfully sent message: ', response)
+  res.writeHead(200)
+  res.end(response)
+  })
+  .catch(error => {
+    console.log('Error sending message', error)
+    res.writeHead(500)
+    res.end(error)
+  })
+})
+
+app.post("/notifications/friend_deny", jsonParser, (req, res) => {
+  
+  let senderName = req.body.sender_name
+
+  var message = {
+    notification: {
+      title: senderName + ' ha rechazado tu solicitud de amistad!'
+    },
+    data: {
+      msgType: 'Friend Deny',
+    },
+    android: {
+      notification: {
+        sound:'default'
+      }
+    },
+    apns: {
+      payload: {
+        aps: {
+          sound: 'default'
+        }
+      }
+    },
+    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
+//    topic: topicName
+  }
+
+  admin.messaging().send(message)
+  .then(response => {
+  console.log('Succesfully sent message: ', response)
+  res.writeHead(200)
+  res.end(response)
+  })
+  .catch(error => {
+    console.log('Error sending message', error)
+    res.writeHead(500)
+    res.end(error)
+  })
+})
+
+app.post("/notifications/coupon", jsonParser, (req, res) => {
+  
+  let senderName = req.body.sender_name
+
+  var message = {
+    notification: {
+      title: senderName + ' ha rechazado tu solicitud de amistad!'
+    },
+    data: {
+      msgType: 'Friend Deny',
+    },
+    android: {
+      notification: {
+        sound:'default'
+      }
+    },
+    apns: {
+      payload: {
+        aps: {
+          sound: 'default'
+        }
+      }
+    },
+    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
+//    topic: topicName
+  }
+
+  admin.messaging().send(message)
+  .then(response => {
+  console.log('Succesfully sent message: ', response)
+  res.writeHead(200)
+  res.end(response)
+  })
+  .catch(error => {
+    console.log('Error sending message', error)
+    res.writeHead(500)
+    res.end(error)
+  })
+})
+
+
 
 app.listen(3000, () => {
   console.log("server running on port", 3000)
