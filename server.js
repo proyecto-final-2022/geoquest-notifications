@@ -85,7 +85,9 @@ app.post("/notifications/quest_invite", jsonParser, (req, res) => {
         }
       }
     },
-    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
+    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bGNTWyVZoLWw82BDYADj2LxT-_6sTi9liy1HwoKphWR5qakAY7ngb4co0wl-sJZXsYRmZv7oddfH9Xkx5rZ41UAdWH6AlzurIX6BlcbqhTpyojgUiZ8mD2W2pRN2OVtG2t6ib2E'
+
+
 //    topic: topicName
   }
 
@@ -337,6 +339,55 @@ app.post("/notifications/coupon", jsonParser, (req, res) => {
     },
     token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
 //    topic: topicName
+  }
+
+  admin.messaging().send(message)
+  .then(response => {
+  console.log('Succesfully sent message: ', response)
+  res.writeHead(200)
+  res.end(response)
+  })
+  .catch(error => {
+    console.log('Error sending message', error)
+    res.writeHead(500)
+    res.end(error)
+  })
+})
+
+
+
+app.listen(3001, () => {
+  console.log("server running on port", 3001)
+});
+
+app.post("/notifications/quest_update", jsonParser, (req, res) => {
+
+  let teamID = req.body.team_id
+  let sender = req.body.sender
+  let token = req.body.token
+  let item = req.body.item_name
+
+  var message = {
+    notification: {
+      title: sender + ' ha recolectado: ' + item + ' !!'
+    },
+    data: {
+      msgType: 'Quest Update',
+      teamID: teamID,
+    },
+    android: {
+      notification: {
+        sound:'default'
+      }
+    },
+    apns: {
+      payload: {
+        aps: {
+          sound: 'default'
+        }
+      }
+    },
+    token: token
   }
 
   admin.messaging().send(message)
