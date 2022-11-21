@@ -65,6 +65,7 @@ app.post("/topic", (req, res) => {
 app.post("/notifications/quest_invite", jsonParser, (req, res) => {
   
   let senderName = req.body.sender_name
+  let token = req.body.token
 
   var message = {
     notification: {
@@ -85,7 +86,7 @@ app.post("/notifications/quest_invite", jsonParser, (req, res) => {
         }
       }
     },
-    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bGNTWyVZoLWw82BDYADj2LxT-_6sTi9liy1HwoKphWR5qakAY7ngb4co0wl-sJZXsYRmZv7oddfH9Xkx5rZ41UAdWH6AlzurIX6BlcbqhTpyojgUiZ8mD2W2pRN2OVtG2t6ib2E'
+    token: token
 
 
 //    topic: topicName
@@ -109,6 +110,7 @@ app.post("/notifications/quest_accept", jsonParser, (req, res) => {
   let senderName = req.body.sender_name
   let questID = req.body.quest_id.toString()
   let teamID = req.body.team_id.toString()
+  let token = req.body.token
 
   var message = {
     notification: {
@@ -131,7 +133,7 @@ app.post("/notifications/quest_accept", jsonParser, (req, res) => {
         }
       }
     },
-    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
+    token: token
 //    topic: topicName
   }
 
@@ -153,6 +155,7 @@ app.post("/notifications/quest_deny", jsonParser, (req, res) => {
   let senderName = req.body.sender_name
   let questID = req.body.quest_id.toString()
   let teamID = req.body.team_id.toString()
+  let token = req.body.token
 
   var message = {
     notification: {
@@ -175,7 +178,7 @@ app.post("/notifications/quest_deny", jsonParser, (req, res) => {
         }
       }
     },
-    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
+    token: token
 //    topic: topicName
   }
 
@@ -196,6 +199,7 @@ app.post("/notifications/friend_request", jsonParser, (req, res) => {
   
   let senderName = req.body.sender_name
   let senderID = req.body.sender_id.toString()
+  let token = req.body.token
 
   var message = {
     notification: {
@@ -217,7 +221,7 @@ app.post("/notifications/friend_request", jsonParser, (req, res) => {
         }
       }
     },
-    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
+    token: token
 //    topic: topicName
   }
 
@@ -237,6 +241,7 @@ app.post("/notifications/friend_request", jsonParser, (req, res) => {
 app.post("/notifications/friend_accept", jsonParser, (req, res) => {
   
   let senderName = req.body.sender_name
+  let token = req.body.token
 
   var message = {
     notification: {
@@ -257,7 +262,7 @@ app.post("/notifications/friend_accept", jsonParser, (req, res) => {
         }
       }
     },
-    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
+    token: token
 //    topic: topicName
   }
 
@@ -277,6 +282,7 @@ app.post("/notifications/friend_accept", jsonParser, (req, res) => {
 app.post("/notifications/friend_deny", jsonParser, (req, res) => {
   
   let senderName = req.body.sender_name
+  let token = req.body.token
 
   var message = {
     notification: {
@@ -297,7 +303,7 @@ app.post("/notifications/friend_deny", jsonParser, (req, res) => {
         }
       }
     },
-    token: 'dKn-cJsBRAO5scLM4Dn3CK:APA91bHod5eYcoVYzkeVfSvptzbOVJ1OBm26Z4HJ8TnwD7eZ3yv8MI4mhm15dEx_qEDeAqwL5XMh-1KsXP3GWPbs16Oc1G6GPYcTozptm2TrXxKn_AYqdeFF-dEMyWxYSlrYNKuUYarE'
+    token: token
 //    topic: topicName
   }
 
