@@ -362,8 +362,8 @@ app.post("/notifications/coupon", jsonParser, (req, res) => {
 
 
 
-app.listen(3002, () => {
-  console.log("server running on port", 3002)
+app.listen(3000, () => {
+  console.log("server running on port", 3000)
 });
 
 app.post("/notifications/quest_update", jsonParser, (req, res) => {
@@ -408,13 +408,6 @@ app.post("/notifications/quest_update", jsonParser, (req, res) => {
     res.end(error)
   })
 })
-
-
-
-app.listen(3002, () => {
-  console.log("server running on port", 3002)
-});
-
 
 
 
