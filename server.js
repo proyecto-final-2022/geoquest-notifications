@@ -385,8 +385,8 @@ app.post("/notifications/quest_update", jsonParser, (req, res) => {
     },
     data: {
       msgType: 'Quest Update',
-      teamID: string(teamID),
-      questID: string(questID)
+      teamID: teamID.toString(),
+      questID: questID.toString()
     },
     android: {
       notification: {
