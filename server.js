@@ -369,10 +369,15 @@ app.listen(3000, () => {
 app.post("/notifications/quest_update", jsonParser, (req, res) => {
 
   let teamID = req.body.team_id
+  console.log("teamID " + teamID)
   let questID = req.body.quest_id
+  console.log("questID " + questID)
   let sender = req.body.sender
+  console.log("Sender " + sender)
   let token = req.body.token
+  console.log("Token " + token)
   let item = req.body.item_name
+  console.log("Item " + item)
 
   var message = {
     notification: {
